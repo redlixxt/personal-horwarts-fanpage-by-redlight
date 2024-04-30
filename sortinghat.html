@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sorting Hat</title>
+        <link rel="stylesheet" href="layout.css">
+    </head>
+    <body>
+        <div id="crest">
+            <img src="Hogwarts_crest.png" alt="Hogwarts Coat of Arms">
+        </div>
+        <h1>Hogwarts</h1>
+        <div id="nev_bar">
+            <ul>
+                <li><a href="index.html">Welcome</a></li>
+                <li><a href="sortinghat.html">Sorting Hat</a></li>
+            </ul>
+        </div>
+        <div id="st_hat">
+            <img src="sorting_hat.png" alt="Sorting Hat">
+            <p id="st_song">
+                Oh, you may not think I'm pretty. But don't judge on what you see, I'll eat myself if you can find a smarter hat than me. You can keep your bowlers back, your top hats sleek and tall, for I'm the Hogwarts Sorting Hat and I can cap them all. There's nothing hidden in your head the Sorting Hat can't see, so try me on and I will tell you where you ought to be.<br><br>
+                You might belong in <span class="ly_text" style="color: red;">Gryffindor</span>, where dwell the brave at heart, their daring, nerve, and chivalry set Gryffindors apart; 
+                You might belong in <span class="ly_text" style="color: yellow;">Hufflepuff</span>, where they are just and loyal, those patient Hufflepuffs are true and unafraid of toil; 
+                Or yet in wise old <span class="ly_text" style="color: blue;">Ravenclaw</span>, if you've a ready mind, where those of wit and learning, will always find their kind; 
+                Or perhaps in <span class="ly_text" style="color: green;">Slytherin</span>, you'll make your real friends, those cunning folks use any means to achieve their ends.<br><br>
+                So put me on! Don't be afraid! And don't get in a flap! You're in safe hands (though I have none) For I'm a Thinking Cap!
+            </p>
+            <div id="pio_button">
+                <input type="button" value="Try me" style="width: 200px; height: 40px;" onclick="stquery()">
+            <div id="pio_click" style="display: none;">
+                <script>
+                    function stquery() {
+                        var x = document.getElementById("pio_click");
+                        if (x.style.display === "block") {
+                            x.style.display = "none";
+                        }
+                        else {
+                            x.style.display = "block";
+                        }
+                    }
+                </script>
+                <h2>Difficult... Very Difficult...</h2>
+                <div id="queries">
+                    <p>
+                        Q. Which of these traits best describes you?<br>
+                        <input type="radio" name="Q1" value="Hufflepuff">Loyal
+                        <input type="radio" name="Q1" value="Slytherin">cunning
+                        <input type="radio" name="Q1" value="Gryffindor">Brave
+                        <input type="radio" name="Q1" value="Ravenclaw">Clever<br><br>
+
+                        Q. What would your family say is your worst trait?<br>
+                        <input type="radio" name="Q2" value="Gryffindor">Reckless - you don't think before you act.<br>
+                        <input type="radio" name="Q2" value="Ravenclaw">A bit of a know-it-all.<br>
+                        <input type="radio" name="Q2" value="Slytherin">Worst trait? Really? You have no bad traits.<br>
+                        <input type="radio" name="Q2" value="Hufflepuff">You're too nice for your own good.<br><br>
+
+                        Q. Which of these would be your dream jobs?<br>
+                        <input type="radio" name="Q3" value="Slytherin">HP World : Someone high up in the Ministry - Real World : something high up in the government. Power is everything!<br>
+                        <input type="radio" name="Q3" value="Gryffindor">HP World : Auror - Real World : Exploerer or detective. Something exciting!<br>
+                        <input type="radio" name="Q3" value="Ravenclaw">HP World : Hogwarts professor - Real World : University professor or doctor.<br>
+                        <input type="radio" name="Q3" value="Hufflepuff">HP World : Herbology professor - Real World : A children's librarian or teacher.<br><br>
+                    </p>
+                </div>
+                <div id="st_rslt">
+                    <input type="button" value="You're in..." style="width: 200px; height: 40px;" onclick="sorting()">
+                </div>
+            </div>
+        </div>
+        <!-- function -->
+        <script>
+            function sorting() {
+                var G = 0; S = 0; H = 0; R = 0;
+
+                var q1 = document.querySelector('input[name="Q1"]:checked').value;
+                var q2 = document.querySelector('input[name="Q2"]:checked').value;
+                var q3 = document.querySelector('input[name="Q3"]:checked').value;
+                
+                var temp = q1;
+                
+                for (let i = 0; i < 3; i++) {
+                    if (temp === 'Gryffindor') {
+                        G++;
+                    } else if (temp === 'Slytherin') {
+                        S++;
+                    } else if (temp === 'Ravenclaw') {
+                        R++;
+                    } else {
+                        H++;
+                    }
+                    if (i === 0) temp = q2;
+                    else if (i === 1) temp = q3;
+                }
+                if (G >= 2) {
+                    alert("Gryffindor!");
+                } else if (S >= 2) {
+                    alert("Slytherin!");
+                } else if (R >= 2) {
+                    alert("Ravenclaw!");
+                } else if (H >= 2) {
+                    alert("Hufflepuff!");
+                } else {
+                    alert("Whatever you want!");
+                }
+                return 0;
+            }
+        </script>
+    </body>
+</html>
